@@ -1,0 +1,56 @@
+INFO 2021-05-15 17:57:45,498 :: Execution of Readwrapper.py for customer_details
+INFO 2021-05-15 17:57:45,539 :: Successfully read input source file
+INFO 2021-05-15 17:57:45,547 :: Successfully read sql input script ****************\Incubyte_Assessment\scripts\CUSTOMER_DETAILS.SQL
+INFO 2021-05-15 17:57:45,547 :: Successfully modified the sql query and added country  info - (INDIA)(IND)
+INFO 2021-05-15 17:57:45,547 :: /*-----------------------------------------------------------------------------------------------------------
+--
+--   NAME:           CUSTOMER_DETAILS.SQL
+--
+--   DESCRIPTION:    This script insert data FROM STG.CUSTOMER_STG to CONS.CUSTOMER
+--
+--   INPUT TABLES:   STG.CUSTOMER_STG
+--
+--   OUTPUT TABLES:  CONS.CUSTOMER
+--
+--   PREMODULE:      Copy data FROM STG.CUSTOMER_STG TO CONS.CUSTOMER in Redshift
+--
+--   POSTMODULE:     NA
+--
+--  ----------------------------------------------------------------------------
+--  Change History
+--  ----------------------------------------------------------------------------
+--  ChangeDate/Version   Author                    		Description
+--  ----------------------------------------------------------------------------
+#   1.1	  				Balagururaja Alagarsamy			Initial Version
+
+------------------------------------------------------------------------------------------------------------------*/
+/*Insert data from stg table to cons table*/
+INSERT INTO CONS.TABLE_INDIA
+(
+	CUSTOMER_NAME
+	,CUSTOMER_ID
+	,CUSTOMER_OPEN_DATE
+	,LAST_CONSULTED_DATE
+	,VACCINATION_TYPE
+	,DOCTOER_CONSULTED
+	,STATE,
+	,COUNTRY
+	,POSTAL_CODE
+	,DATE_OF_BIRTH
+	,ACTIVE_CUSTOMER
+)
+SELECT 
+	CUSTOMER_NAME
+	,CUSTOMER_ID
+	,CUSTOMER_OPEN_DATE
+	,LAST_CONSULTED_DATE
+	,VACCINATION_TYPE
+	,DOCTOER_CONSULTED
+	,STATE,
+	,COUNTRY
+	,POSTAL_CODE
+	,DATE_OF_BIRTH
+	,ACTIVE_CUSTOMER
+FROM STG.CUSTOMER_STG
+WHERE COUNTRY IN ('IND');	
+INFO 2021-05-15 17:57:45,550 :: Time Taken for the copywrapper script: 0:00:00.052006 HH:MM:SS:seconds
